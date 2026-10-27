@@ -466,11 +466,11 @@ static void test_pin_mode_screen_requires_pw1(void) {
 }
 
 static void test_pin_mode_default(void) {
-    // The Trust mode is never the default one
+    // Trust may be set as the default mode
     G_gpg_vstate.pinmode = PIN_MODE_TRUST;
     N_gpg_pstate->config_pin = PIN_MODE_CONFIRM;
     pin_cb(TOKEN_PIN_DEF, 0);
-    TEST_ASSERT_EQUAL_HEX8(PIN_MODE_CONFIRM, N_gpg_pstate->config_pin);
+    TEST_ASSERT_EQUAL_HEX8(PIN_MODE_TRUST, N_gpg_pstate->config_pin);
 
     G_gpg_vstate.pinmode = PIN_MODE_SCREEN;
     G_gpg_vstate.keypad_shuffle = false;

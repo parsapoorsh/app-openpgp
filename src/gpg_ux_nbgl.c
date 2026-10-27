@@ -1047,10 +1047,7 @@ static void pin_cb(int token, uint8_t index) {
             }
             break;
         case TOKEN_PIN_DEF:
-            if (G_gpg_vstate.pinmode == PIN_MODE_TRUST) {
-                ui_info(DEFAULT_MODE, NOT_ALLOWED, ui_settings_pin, false);
-                break;
-            }
+            // Any mode, including Trust, may be set as the default mode.
             if (G_gpg_vstate.pinmode != N_gpg_pstate->config_pin) {
                 nvm_write((void *) (&N_gpg_pstate->config_pin), &G_gpg_vstate.pinmode, 1);
             }
