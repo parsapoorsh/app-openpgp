@@ -25,7 +25,7 @@ include $(BOLOS_SDK)/Makefile.target
 #        Mandatory configuration       #
 ########################################
 # Application name
-APPNAME = OpenPGP
+APPNAME = OpenPGPc
 
 # Application version
 APPVERSION_M = 3
@@ -77,7 +77,7 @@ PATH_APP_LOAD_PARAMS = "2152157255'"
 #   * It must at least contains one value.
 #   * Values can be the app ticker or anything else but should be unique.
 VARIANT_PARAM = APPNAME
-VARIANT_VALUES = OpenPGP
+VARIANT_VALUES = OpenPGPc
 
 # Enabling DEBUG flag will enable PRINTF and disable optimizations
 #DEBUG = 1
