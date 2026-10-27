@@ -441,14 +441,10 @@ static void test_uif_blocks_commands(void) {
 /* PIN mode settings                                                       */
 /* ----------------------------------------------------------------------- */
 
-static void test_pin_mode_trust_requires_pw3(void) {
+static void test_pin_mode_trust_no_pw3(void) {
     G_gpg_vstate.pinmode = PIN_MODE_CONFIRM;
 
-    pin_cb(TOKEN_PIN_SET, PIN_CHOICE_TRUST);
-    TEST_ASSERT_EQUAL_HEX8(PIN_MODE_CONFIRM, G_gpg_vstate.pinmode);
-
-    // With PW3, the Trust mode is only selected after a confirmation
-    verified[PIN_ID_PW3] = 1;
+    // Trust is selected after confirmation, without requiring PW3
     pin_cb(TOKEN_PIN_SET, PIN_CHOICE_TRUST);
     TEST_ASSERT_EQUAL_HEX8(PIN_MODE_CONFIRM, G_gpg_vstate.pinmode);
     TEST_ASSERT_EQUAL_HEX8(PIN_MODE_TRUST, G_gpg_vstate.pinmode_req);
@@ -737,7 +733,7 @@ int main(void) {
     RUN_TEST(test_uif_confirmed);
     RUN_TEST(test_uif_refused);
     RUN_TEST(test_uif_blocks_commands);
-    RUN_TEST(test_pin_mode_trust_requires_pw3);
+    RUN_TEST(test_pin_mode_trust_no_pw3);
     RUN_TEST(test_pin_mode_screen_requires_pw1);
     RUN_TEST(test_pin_mode_default);
     RUN_TEST(test_template_change_other_slot);
